@@ -56,8 +56,9 @@ def getCategory():
     chest = Workout(id=3 , name = "Chest")
     back = Workout(id=4 , name = "Back")
     shoulders = Workout(id=5 , name = "Shoulders")
+    glutes = Workout(id=6 , name = "Glutes)
 
-    db.session.add_all([legs, arms, chest, back, shoulders])
+    db.session.add_all([legs, arms, chest, back, shoulders,glutes])
     db.session.commit()
 
     @app.route('/')
