@@ -38,5 +38,48 @@ def create_app(overrides={}):
     app.app_context().push()
     return app
 
-#test comment to see how commiting works
 
+
+
+def create_users():
+    rob = User(username="rob", email = "robemail@gmail.com" , password="robpass")
+    bob = User(username="bob", email = "bobemail@gmail.com" , password="bobpass")
+    sally = User(username="sally", email = "sallyemail@gmail.com" , password="sallypass")
+    pam = User(username="pam", email = "pamemail@gmail.com" , password="pampass")
+    chris = User(username="chris", email = "chrisemail@gmail.com" , password="chrispass")
+    db.session.add_all([rob, bob])
+    db.session.commit()
+
+def getCategory():
+    legs = Workout(id=1 , name = "Legs")
+    arms = Workout(id=2 , name = "Arms")
+    chest = Workout(id=3 , name = "Chest")
+    back = Workout(id=4 , name = "Back")
+    shoulders = Workout(id=5 , name = "Shoulders")
+
+    db.session.add_all([legs, arms, chest, back, shoulders])
+    db.session.commit()
+
+    @app.route('/')
+def login():
+  return render_template('login.html')
+
+
+@app.route('/login', methods=['POST'])
+def login_action():
+  username = request.form.get('username')
+  password = request.form.get('password')
+  user = User.query.filter_by(username=username).first()
+  if user and user.check_password(password):
+    response = redirect(url_for('home'))
+    access_token = create_access_token(identity=user.id)
+    set_access_cookies(response, access_token)
+    return response
+  else:
+    flash('Invalid username or password')
+    return redirect(url_for('login'))
+
+
+
+if __name__ == '__main__':
+  app.run(host='0.0.0.0', port=8080, debug=True)
