@@ -15,6 +15,11 @@ def init():
     create_user('bob', 'bobpass')
     return jsonify(message='db initialized!')
 
+@index_views.route('/workout', methods=['GET'])
+def workouts_page():
+    return jsonify(message="Page Not Implemented Yet")
+
+
 @index_views.route('/health', methods=['GET'])
 def health_check():
     return jsonify({'status':'healthy'})

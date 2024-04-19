@@ -30,4 +30,11 @@ def update_user(id, username):
         db.session.add(user)
         return db.session.commit()
     return None
-    
+
+# def checkSaved(id, routineID):
+#     user = User.query.filter_by(id = id).first()
+#     if user:
+#         for routine in user.routines:
+#             if routine.id == routineID and routine.user_id == user.id:
+#                 return True
+#     return False

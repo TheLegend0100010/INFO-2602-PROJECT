@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template
+from flask import Flask, render_template, flash, redirect, url_for
 from flask_uploads import DOCUMENTS, IMAGES, TEXT, UploadSet, configure_uploads
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
@@ -34,53 +34,59 @@ def create_app(overrides={}):
     @jwt.unauthorized_loader
     def custom_unauthorized_response(error):
         return render_template('401.html', error=error), 401
+
+    @jwt.expired_token_loader
+    def expired_token_callback(jwt_header, jwt_payload):
+      flash("Your session has expired. Please log in again.")
+      return redirect(url_for('index_views.index_page'))
     
     app.app_context().push()
+    
     return app
 
 
 
 
-def create_users():
-    rob = User(username="rob", email = "robemail@gmail.com" , password="robpass")
-    bob = User(username="bob", email = "bobemail@gmail.com" , password="bobpass")
-    sally = User(username="sally", email = "sallyemail@gmail.com" , password="sallypass")
-    pam = User(username="pam", email = "pamemail@gmail.com" , password="pampass")
-    chris = User(username="chris", email = "chrisemail@gmail.com" , password="chrispass")
-    db.session.add_all([rob, bob])
-    db.session.commit()
+# def create_users():
+#     rob = User(username="rob" , password="robpass")
+#     bob = User(username="bob" , password="bobpass")
+#     sally = User(username="sally", password="sallypass")
+#     pam = User(username="pam" , password="pampass")
+#     chris = User(username="chris" , password="chrispass")
+#     db.session.add_all([rob, bob])
+#     db.session.commit()
 
-def getCategory():
-    legs = Workout(id=1 , name = "Legs")
-    arms = Workout(id=2 , name = "Arms")
-    chest = Workout(id=3 , name = "Chest")
-    back = Workout(id=4 , name = "Back")
-    shoulders = Workout(id=5 , name = "Shoulders")
-    glutes = Workout(id=6 , name = "Glutes")
+# def getCategory():
+#     legs = Workout(id=1 , name = "Legs")
+#     arms = Workout(id=2 , name = "Arms")
+#     chest = Workout(id=3 , name = "Chest")
+#     back = Workout(id=4 , name = "Back")
+#     shoulders = Workout(id=5 , name = "Shoulders")
+#     glutes = Workout(id=6 , name = "Glutes")
 
-    db.session.add_all([legs, arms, chest, back, shoulders, glutes])
-    db.session.commit()
+#     db.session.add_all([legs, arms, chest, back, shoulders, glutes])
+#     db.session.commit()
 
-    @app.route('/')
-def login():
-  return render_template('login.html')
-
-
-@app.route('/login', methods=['POST'])
-def login_action():
-  username = request.form.get('username')
-  password = request.form.get('password')
-  user = User.query.filter_by(username=username).first()
-  if user and user.check_password(password):
-    response = redirect(url_for('home'))
-    access_token = create_access_token(identity=user.id)
-    set_access_cookies(response, access_token)
-    return response
-  else:
-    flash('Invalid username or password')
-    return redirect(url_for('login'))
+#     @app.route('/')
+# def login():
+#   return render_template('login.html')
 
 
+# @app.route('/login', methods=['POST'])
+# def login_action():
+#   username = request.form.get('username')
+#   password = request.form.get('password')
+#   user = User.query.filter_by(username=username).first()
+#   if user and user.check_password(password):
+#     response = redirect(url_for('home'))
+#     access_token = create_access_token(identity=user.id)
+#     set_access_cookies(response, access_token)
+#     return response
+#   else:
+#     flash('Invalid username or password')
+#     return redirect(url_for('login'))
 
-if __name__ == '__main__':
-  app.run(host='0.0.0.0', port=8080, debug=True)
+
+
+# if __name__ == '__main__':
+#   app.run(host='0.0.0.0', port=8080, debug=True)
