@@ -6,7 +6,6 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement = True)
     username =  db.Column(db.String, nullable=False, unique=True)
     password = db.Column(db.String(120), nullable=False)
-    email = db.Column(db.String(120), nullable = False)
     age = db.Column(db.Integer, nullable = True)
     weight = db.Column(db.Integer, nullable = True)
     profile_image = db.Column(db.String(256))
@@ -16,7 +15,6 @@ class User(db.Model):
     def __init__(self, username, password):
         self.username = username
         self.set_password(password)
-        self.email = "TEST"
         
 
     def get_json(self):

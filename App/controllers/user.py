@@ -1,11 +1,31 @@
 from App.models import User
 from App.database import db
+from sqlalchemy.exc import IntegrityError
+from flask_jwt_extended import (
+    JWTManager,
+    create_access_token,
+    jwt_required,
+    set_access_cookies,
+    unset_jwt_cookies,
+    current_user
+)
 
 def create_user(username, password):
-    newuser = User(username=username, password=password)
-    db.session.add(newuser)
-    db.session.commit()
-    return newuser
+    new_user = User(username=username, password=password)
+    try:
+        db.session.add(new_user)
+        db.session.commit()
+        return new_user
+    except IntegrityError:
+        db.session.rollback()
+        return None
+
+def login_user(username, password):
+    user = User.query.filter_by(username=username).first()
+    if user and user.check_password(password):
+        token = create_access_token(identity=user.username)
+        return token
+    return None
 
 def get_user_by_username(username):
     return User.query.filter_by(username=username).first()

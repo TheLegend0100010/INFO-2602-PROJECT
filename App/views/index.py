@@ -1,13 +1,46 @@
-from flask import Blueprint, redirect, render_template, request, send_from_directory, jsonify
+from flask import Blueprint, redirect, render_template, request, send_from_directory, jsonify, flash
 from App.models import db, Workout
-from App.controllers import create_user
+from App.controllers import create_user, login_user
 import json
 
 index_views = Blueprint('index_views', __name__, template_folder='../templates')
 
 @index_views.route('/', methods=['GET'])
 def index_page():
-    return render_template('index.html')
+    return render_template('templanding.html')
+
+@index_views.route('/signup', methods=['GET'])
+def signup():
+     return render_template('tempsignup.html')
+
+@index_views.route('/signup', methods=['POST'])
+def signup_action():
+    data = request.form
+    user = create_user(data['username'], data['password'])
+    if user:
+        flash("User created")
+        token = login_user(user.username, data['password'])
+        if token:
+            return render_template('templanding.html')
+        return render_template('tempsignup.html')
+    flash("Username already taken")
+    return render_template('tempsignup.html')
+
+
+
+@index_views.route('/login', methods=['GET'])
+def login():
+     return render_template('templogin.html')
+
+@index_views.route('/login', methods=['POST'])
+def login_action():
+    data = request.form
+    token = login_user(data['username'], data['password'])
+    if token:
+         flash("Logged In")
+         return render_template('templanding.html')
+    flash("Invalid username/password")
+    return render_template('templogin.html')
 
 @index_views.route('/init', methods=['GET'])
 def init():
@@ -32,7 +65,9 @@ def init():
 
 @index_views.route('/workout', methods=['GET'])
 def workouts_page():
-    return jsonify(message="Page Not Implemented Yet")
+     flash('Win')
+     return render_template('templanding.html')
+    # return jsonify(message="Page Not Implemented Yet")
 
 
 @index_views.route('/health', methods=['GET'])
