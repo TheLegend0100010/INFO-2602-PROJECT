@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+     
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+20&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+20&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap" rel="stylesheet">
+   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Home</title>
+
+    <style>
+      *{
+        box-sizing: border-box;  
+      }
+
+      h1{
+        font-size : 1.5em;
+        
+      }
+      h2{
+        font-size : 9.5em;
+          font-family: "Jersey 20", sans-serif;
+          font-weight: 400;
+          font-style: normal;
+      }
+      h6{
+         font-size : 3.5em;
+        font-family: "Jersey 20", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      p{
+        font-size : 2.5em;
+        font-family: "Geologica", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: <weight>;
+        font-style: normal;
+        font-variation-settings:
+          "slnt" 0,
+          "CRSV" 0,
+          "SHRP" 0;
+      }
+      
+      html{
+        height: 100vh;
+        width: 100vw;
+        margin:0;
+        padding:0;
+      }
+      
+      body{
+        margin:0;
+        padding:0;
+        height: 100%;
+        width: 100%;
+      }
+
+    </style>
+
+  </head>
+  <body>
+    <nav class="#20fc8f white ">
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo black-text" style="padding-left: 10px;">Evo Fitness </a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+          <li>
+            <a href="/login" style="padding-right: 50px;">
+              <button class="btn waves-effect waves-light" type="submit"  name="action">Log in</button>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <nav class="white black-text" style="padding: 10px">
+      <div class="nav-wrapper">
+          <ul class="flashes">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+          </ul>
+      </div>
+    </nav>
+    {% endif %}
+    {% endwith %}
+    <div class="card-panel#3f5e5a teal darken-2">
+    <div class="row">
+
+    <section class="col s12 m9" style="margin-top: 5px; height: 95vh; padding-left: 30px; display: flex; justify-content: left; align-items: center; color: white;">
+      <div class="row">
+        <div class="col s12">
+        <h2>EVO FITNESS</h2>
+        <h4>Workout Remixer</h4>
+        <h6> SLEEP. EAT. GYM. REPEAT.</h6>
+        <p> Browse hundreds of workout routines from fellow gym members to spice up your next gym workout...</p>
+        
+          <a href="/login">
+            <button class="btn waves-effect waves-light white" style="background-color: #FFFFFF; color: #3f5e5a;" type="submit"  name="action">Log in</button>
+          </a>
+          <a href="/signup">
+            <button class="btn waves-effect waves-light white" style="background-color: #FFFFFF; color: #3f5e5a;" type="submit"  name="action">Sign up</button>
+          </a>
+
+          
+        </div>
+      </div>
+      
+      </section>
+        
+
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script> M.AutoInit(); </script>
+  </body>
+</html>
