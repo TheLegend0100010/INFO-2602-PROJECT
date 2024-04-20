@@ -9,6 +9,7 @@ class User(db.Model):
     email = db.Column(db.String(120), nullable = False)
     age = db.Column(db.Integer, nullable = True)
     weight = db.Column(db.Integer, nullable = True)
+    profile_image = db.Column(db.String(256))
     routines = db.relationship('Routine', backref = "user", lazy = True)
     
 
