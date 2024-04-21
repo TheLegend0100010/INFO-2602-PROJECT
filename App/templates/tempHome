@@ -104,9 +104,9 @@
     <nav class="white ">
       <div class="nav-wrapper" style="display: flex; justify-content: space-between; align-items: center; padding-left:5em;">
         
-        <a href="/login" class="buttons black-text" >
+        
         <h6 style="color:#20fc8f; background-color:white;"name="action">Evo Fitness</h6>
-        </a>
+       
         <a href="/login" class="buttons black-text" >
         <h5 style="color:black; background-color:white;"name="action">My Posts</h5>
         </a>
