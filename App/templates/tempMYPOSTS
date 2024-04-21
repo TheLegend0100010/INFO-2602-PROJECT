@@ -169,8 +169,8 @@
                   <h5 style="font-size:2">Workout Category</h5>
                 </div>
                 <div class="card-action">
-                  <a href="#" class="waves-effect waves-light btn-flat" style="; background-color:white;color:#20fc8f">DELETE </a>
-                  <a href="#" class="waves-effect waves-light btn-flat" style="; background-color:white;color:#20fc8f">EDIT </a>
+                  <a href="#" class="waves-effect waves-light btn-flat" style="; background-color:white;color:#3e5d59">DELETE </a>
+                  <a href="#" class="waves-effect waves-light btn-flat" style="; background-color:white;color:#3e5d59">EDIT </a>
                 </div>
               </div>
             </div>
@@ -193,8 +193,8 @@
                     <h5 style="font-size:2">Workout Category</h5>
                   </div>
                   <div class="card-action">
-                    <a href="#" class="waves-effect waves-light btn-flat" style="; background-color:white;color:#20fc8f">DELETE </a>
-                    <a href="#" class="waves-effect waves-light btn-flat" style="; background-color:white;color:#20fc8f">EDIT </a>
+                    <a href="#" class="waves-effect waves-light btn-flat" style="; background-color:white;color:#3e5d59">DELETE </a>
+                    <a href="#" class="waves-effect waves-light btn-flat" style="; background-color:white;color:#3e5d59">EDIT </a>
                   </div>
                 </div>
               </div>
