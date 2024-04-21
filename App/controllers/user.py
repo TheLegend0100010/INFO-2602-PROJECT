@@ -1,4 +1,4 @@
-from App.models import User
+from App.models import User, Routine
 from App.database import db
 from sqlalchemy.exc import IntegrityError
 from flask_jwt_extended import (
@@ -51,6 +51,13 @@ def update_user(id, username):
         return db.session.commit()
     return None
 
+def check_routine_saved(id, routineID):
+    user = User.query.get(id)
+    if user:
+        routine = Routine.query.get(routineID)
+        return routine in user.routines
+    return False
+            
 # def checkSaved(id, routineID):
 #     user = User.query.filter_by(id = id).first()
 #     if user:

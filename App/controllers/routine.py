@@ -15,7 +15,7 @@ def make_routine(name, user_id):
     return routine
 
 def edit_routine(routineID, name, text):
-    routine = Routine.get(routineID)
+    routine = Routine.query.get(routineID)
     if routine:
         routine.name = name
         routine.text = text
@@ -25,22 +25,40 @@ def edit_routine(routineID, name, text):
     return None
 
 def add_workout(routineID, workoutID):
-    routine = Routine.get(routineID)
+    routine = Routine.query.get(routineID)
     if routine:
-        workout = Workout.get(workoutID)
+        workout = Workout.query.get(workoutID)
         if workout:
+            if routine.level == 'beginner':
+                routine.level = workout.level
+            elif routine.level == 'intermediate' and workout.level == 'expert':
+                routine.level = workout.level
             routine.workouts.append(workout)
             db.session.add(routine)
             db.session.commit()
             return routine
     return None
 
-def save_routine(routineID, num, user_id):
-    routine = Routine.get(routineID)
+def save_routine(routineID, user_id):
+    routine = Routine.query.get(routineID)
     if routine:
-        user = User.query.filter_by(id=user_id)
-        user.routines.append(routine)
-        db.session.add(user)
-        db.session.commit()
-        return True
+        user = User.get(user_id)
+        if user and routine.user_id != user_id:
+            user.routines.append(routine)
+            routine.saves += 1
+            db.session.add(user)
+            db.session.commit()
+        return user
+    return None
+
+def unsave_routine(routineID, user_id):
+    routine = Routine.query.get(routineID)
+    if routine:
+        user = User.query.get(user_id)
+        if user and routine in user.routines:
+            user.routines.remove(routine)
+            routine.saves -= 1
+            db.session.commit()
+            return True
     return False
+
