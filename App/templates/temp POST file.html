@@ -1,0 +1,180 @@
+              <!doctype html>
+              <html lang="en">
+                <head>
+
+                  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+                  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+                  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+                  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+                  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                  <link href="https://fonts.googleapis.com/css2?family=Jersey+20&display=swap" rel="stylesheet">
+
+                  <link rel="preconnect" href="https://fonts.googleapis.com">
+                  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                  <link href="https://fonts.googleapis.com/css2?family=Jersey+20&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+
+                  <link rel="preconnect" href="https://fonts.googleapis.com">
+                  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                  <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap" rel="stylesheet">
+
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <title>Home</title>
+
+                  <style>
+                    *{
+                      box-sizing: border-box;  
+                    }
+
+                    h1{
+                      font-size : 1.5em;
+
+                    }
+                    h2{
+                      font-size : 2em;
+                        font-family: "Jersey 20", sans-serif;
+                        font-weight: 400;
+                        font-style: normal;
+                    }
+                    h4{
+                      font-family: "Jersey 20", sans-serif;
+                      font-weight: 400;
+                      font-style: normal;
+                      font-size : 10em;
+                    }
+
+                    p{
+                      font-size : 1em;
+                      font-family: "Geologica", sans-serif;
+                      font-optical-sizing: auto;
+                      font-weight: <weight>;
+                      font-style: normal;
+                      font-variation-settings:
+                        "slnt" 0,
+                        "CRSV" 0,
+                        "SHRP" 0;
+                    }
+
+                    html{
+                      height: 100vh;
+                      width: 100vw;
+                      margin:0;
+                      padding:0;
+                    }
+
+                    body{
+                      margin:0;
+                      padding:0;
+                      height: 100%;
+                      width: 100%;
+                    }
+
+                  </style>
+
+                </head>
+                <body>
+                  <nav class="#20fc8f white " style="display: flex; justify-content: center;">
+                    <div class="nav-wrapper">
+                      <h2 style="padding-left: 10px; color: black">Evo Fitness </h2>
+                      <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                      </ul>
+                    </div>
+                  </nav>
+
+
+                  {% with messages = get_flashed_messages() %}
+                  {% if messages %}
+                  <nav class="white black-text" style="padding: 10px">
+                    <div class="nav-wrapper">
+                        <ul class="flashes">
+                        {% for message in messages %}
+                          <li>{{ message }}</li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                  </nav>
+                  {% endif %}
+                  {% endwith %}
+                  <div class="card-panel#2fad7a teal">
+                  <div class="row">
+
+                    <section class="col s12" style="margin-top: 5px; overflow-y:scroll; height: 90vh; padding-top=30px">
+                    <div class="row">
+                      <!-- login form -->
+                      <div class="col s12 m6 l4 offset-m3 offset-l4">
+                        <div class="card">
+                          <div class="card-content">
+                            
+                            <span class="card-title center" >
+                            <h4><span class="card-title center"style="color: #20fc8f;" >Create Post</span></h4>
+                              </span>
+
+                            <form action="/login" method="POST">
+                              <div class="row">
+                                <div class="input-field col s12">
+                                  <textarea placeholder="Give your post a catchy title" id="Title" class="materialize-textarea" required></textarea>
+                                  <label for="Title"> Post Title</label>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="input-field col s12">
+                                  <textarea placeholder="Give your post a spicy description" id="desc" class="materialize-textarea" required></textarea>
+                                  <label for="desc"> Routine Description</label>
+                                </div>
+                              </div>
+
+                              <div class="input-field col s12">
+                                <select required>
+                                  <option value="" disabled selected>...</option>
+                                  <option value="1">Option 1</option>
+                                  <option value="2">Option 2</option>
+                                  <option value="3">Option 3</option>
+                                </select>
+                                <label>Choose a Workout Category</label>
+                              </div>
+
+                              <div class="row">
+                                <p class="range-field" required>
+                                  <label >Difficulty ( 1 - 10 )</label>
+                                  <input type="range" id="test5" min="1" max="10"/>
+                                  
+                                </p>
+                              </div>
+
+
+
+
+
+                              
+
+                            <div class="row">
+                              <div class="input-field col s12 center">
+                                <button class="btn waves-effect waves-light" type="submit" style="text-align: center;border-radius: 20px; background-color: #0b6374">Post </button>
+
+
+                               <button class="btn waves-effect waves-light" type="submit" style="text-align: center;border-radius: 20px; background-color:white; color: #0b6374;"">Cancel </button>
+
+                                
+                              </div>
+                            </div>
+                            
+
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                    </section>
+
+
+
+                  </div>
+
+                  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+                  <script> M.AutoInit(); </script>
+                </body>
+              </html>

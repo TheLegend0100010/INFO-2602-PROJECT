@@ -1,0 +1,246 @@
+        <!doctype html>
+        <html lang="en">
+          <head>
+
+            <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Jersey+20&display=swap" rel="stylesheet">
+
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Jersey+20&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap" rel="stylesheet">
+
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <title>Home</title>
+
+            <style>
+              *{
+                box-sizing: border-box;  
+              }
+
+              h1{
+                font-size : 1.5em;
+
+              }
+              h2{
+                font-size : 9.5em;
+                  font-family: "Jersey 20", sans-serif;
+                  font-weight: 400;
+                  font-style: normal;
+              }
+              h4{
+                font-size : 2.5em;
+                font-family: "Archivo Black", sans-serif;
+                font-weight: 400;
+                font-style: normal;
+              }
+
+              h5{
+                font-size : 1.5em;
+                font-family: "Geologica", sans-serif;
+                font-optical-sizing: auto;
+                font-weight: <weight>;
+                font-style: normal;
+                font-variation-settings:
+                  "slnt" 0,
+                  "CRSV" 0,
+                  "SHRP" 0;
+              }
+              h6{
+                 font-size : 3.5em;
+                font-family: "Jersey 20", sans-serif;
+                font-weight: 400;
+                font-style: normal;
+              }
+
+              p{
+                font-size : 1em;
+                font-family: "Geologica", sans-serif;
+                font-optical-sizing: auto;
+                font-weight: <weight>;
+                font-style: normal;
+                font-variation-settings:
+                  "slnt" 0,
+                  "CRSV" 0,
+                  "SHRP" 0;
+              }
+
+              html{
+                height: 100vh;
+                width: 100vw;
+                margin:1px;
+                padding:0;
+                background-color: #e8e8e8;
+              }
+
+              body{
+                margin:0;
+                padding:0;
+                height: 100%;
+                width: 100%;
+                background-color:
+              }
+
+            </style>
+
+          </head>
+          <body>
+            <nav class="white ">
+              <div class="nav-wrapper" style="display: flex; justify-content: space-between; align-items: center; padding-left:5em;">
+
+                <a href="/login" class="buttons black-text" >
+                <h6 style="color:#3f5e5a; background-color:white;"name="action">Evo Fitness</h6>
+                </a>
+                <a href="/login" class="buttons black-text" >
+                <h5 style="color:black; background-color:white;"name="action">My Posts</h5>
+                  </a>
+                <a href="/login" class="buttons black-text" >
+                <h5 style="color:#3f5e5a; background-color:white;"name="action">Saved</h5>
+                  </a>
+
+                <h5 style="color:#20fc8f; background-color:white;"name="action">My Workouts</h5>
+                
+
+
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                  <li>
+                      <a href="/login" class="buttons black-text" >
+                      <h5 style="color:#20fc8f; background-color:white;"name="action">Log out</h5>
+                      </a>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+
+
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <nav class="white black-text" style="padding: 10px">
+              <div class="nav-wrapper">
+                  <ul class="flashes">
+                  {% for message in messages %}
+                    <li>{{ message }}</li>
+                  {% endfor %}
+                  </ul>
+              </div>
+            </nav>
+            {% endif %}
+            {% endwith %}
+
+            <div class="card-panel#6dd1bb darken-2"">
+            <div class="row">
+
+            <section class="col s12" style="margin-top: 5px; height: 95vh; ">    
+              <div class="row">
+                <div class="col s12" style= "display:flex; align-items:center; justify-content:center">
+                  <a class="waves-effect waves-light btn">Workout 1</a>
+                  <a class="waves-effect waves-light btn">Workout 2</a>
+                  <a class="waves-effect waves-light btn">Workout 3</a>
+                  <a class="waves-effect waves-light btn">Workout 4</a>
+                  <a class="waves-effect waves-light btn">Workout 5</a>
+                  <a class="waves-effect waves-light btn">Workout 6</a>
+                  <a class="waves-effect waves-light btn">Workout 7</a>
+                </div>
+                <h5 style="text-align:center"> Select a Workout to display Routines</h5>
+              </div>
+              
+              <h4 style='text-align: center'> <span style='color:#2BAF90'>Workout Number</span></h4>
+
+
+
+              <div class="row" >
+                <div class="col s6 m12 ">
+                  <div class="col s12 m7">
+
+                    <div class="card horizontal">
+
+                      <div class="card-stacked">
+                        <div class="card-content">
+                          <h4><span class="card-title">Routine Title</span></h4>
+                          <p>Description</p>
+                          <p>difficutly</p>
+                          <p>likes : 3</p>
+
+                          <h5 style="font-size:2">Workout Category</h5>
+                        </div>
+                        
+                       
+                      </div>
+                      <a href="#" class="waves-effect waves-light btn" style="background-color:#20fc8f; color:black">LIKE ♡ </a>
+                      <a href="#" class="waves-effect waves-light btn" style="background-color:#20fc8f; color:black">REMOVE FROM WORKOUT ♦ </a>
+                    </div>
+                  </div>
+              </div>
+              </div>
+
+
+              
+              <div class="row">
+                <div class="col s6 m12">
+                  <div class="col s12 m7">
+
+                    <div class="card horizontal">
+
+                      <div class="card-stacked">
+                        <div class="card-content">
+                          <h4><span class="card-title">Routine Title</span></h4>
+                          <p>Description</p>
+                          <p>difficutly</p>
+                          <p>likes : 3</p>
+
+                          <h5 style="font-size:2">Workout Category</h5>
+                        </div>
+                        <div class="card-action">
+
+                          <div class="input-field col s12">
+                            <select multiple>
+                              <option value="" disabled selected>Add to Workouts</option>
+                              <option value="1">Option 1</option>
+                              <option value="2">Option 2</option>
+                              <option value="3">Option 3</option>
+                              <option value="4">Option 4</option>
+                              <option value="5">Option 5</option>
+                              <option value="6">Option 6</option>
+                              <option value="7">Option 7</option>
+                            </select>
+
+                          </div>
+
+
+                        </div>
+
+
+                      </div>
+                      <a href="#" class="waves-effect waves-light btn" style="background-color:#20fc8f; color:black">LIKE ♡ </a>
+                      <a href="#" class="waves-effect waves-light btn" style="background-color:#20fc8f; color:black">UNSAVE ♦ </a>
+                    </div>
+                  </div>
+</div>
+              </div>
+
+
+              
+              </section>
+            </div>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+            <script> M.AutoInit(); </script>
+          </body>
+        </html>              
