@@ -3,10 +3,10 @@ from .routine import Routine
 
 class Workout(db.Model):
     id = db.Column(db.Integer, autoincrement = True, primary_key = True)
-    name = db.Column(db.String(50), nullable = False)
-    level = db.Column(db.String(20), nullable = False)
+    name = db.Column(db.String(500), nullable = False)
+    level = db.Column(db.String(200), nullable = False)
     
-    def __init__(self, name, level, muscle, image):
+    def __init__(self, name, level):
         self.name = name
         self.level = level
 

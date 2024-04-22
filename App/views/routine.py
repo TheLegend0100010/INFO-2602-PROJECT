@@ -1,5 +1,5 @@
 from flask import Blueprint, redirect, render_template, request, send_from_directory, jsonify, flash, url_for
-from App.models import db, Routine
+from App.models import db, Routine, Workout
 from flask_jwt_extended import current_user
 from App.controllers import add_workout, delete_routine_action, edit_routine, make_routine, get_routine, save_routine, check_routine_saved, unsave_routine
 from flask_jwt_extended import jwt_required
@@ -18,9 +18,8 @@ def add_workout_action(id, workoutid):
     routine = Routine.query.get(id)
     if routine.user_id == current_user.id:
         add_workout(id, workoutid)
+    return redirect(url_for('index_views.home'))
     
-
-
 @routine_views.route('/saved', methods=['GET'])
 @jwt_required()
 def view_saved_routine():
@@ -43,6 +42,11 @@ def create_routine():
     routine = make_routine(data['name'], data['text'], current_user.id)
     flash('Routine created')
     return redirect(url_for('routine_views.user_routines'))
+
+@routine_views.route('/add/<int:id>', methods=['GET'])
+@jwt_required()
+def add_workout_page(id):
+    return render_template('addd.html', workout=Workout.query.filter_by(id=id).first())
 
 @routine_views.route('/routine/delete/<int:id>', methods=['POST'])
 @jwt_required()

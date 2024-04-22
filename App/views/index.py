@@ -1,7 +1,7 @@
 from flask import Blueprint, redirect, render_template, request, send_from_directory, jsonify, flash, url_for
 from App.models import db, Workout, Routine
 from App.controllers import create_user, login_user
-import json
+import json, csv
 from flask_jwt_extended import jwt_required, set_access_cookies
 
 index_views = Blueprint('index_views', __name__, template_folder='../templates')
@@ -58,20 +58,27 @@ def init():
     db.drop_all()
     db.create_all()
     create_user('bob', 'bobpass')
-    with open('workouts.csv', encoding = "utf-8") as file:
-        exercises = json.load(file)
+    with open('workouts.csv', newline='', encoding='utf-8') as file:
         records =[]
-        for exercise in exercises['exercises']:
-            image = exercise['name'].replace(' ', '_')
-            image = image.replace('/', '_')
-            imagelink = f"https://raw.githubusercontent.com/wrkout/exercises.json/master/exercises/{image}/images/0.jpg"
-            instructions = ""
-            for instruct in exercise['instructions']:
-                    instructions += instruct
-            record = Workout(exercise['name'], exercise['level'], exercise['primaryMuscles'][0], imagelink)
-            records.append(record)
-            db.session.bulk_save_objects(records)
-            db.session.commit()
+        reader = csv.DictReader(file, delimiter=';')
+        print(reader)
+        for row in reader:
+            print(row.get('name', ''))
+            record = Workout(row.get('name', ''), row.get('level', '')) 
+            records.append(record)   
+        db.session.bulk_save_objects(records)  
+        db.session.commit()  
+        # for exercise in exercises['exercises']:
+        #     image = exercise['name'].replace(' ', '_')
+        #     image = image.replace('/', '_')
+        #     imagelink = f"https://raw.githubusercontent.com/wrkout/exercises.json/master/exercises/{image}/images/0.jpg"
+        #     instructions = ""
+        #     for instruct in exercise['instructions']:
+        #             instructions += instruct
+        #     record = Workout(exercise['name'], exercise['level'], exercise['primaryMuscles'][0], imagelink)
+        #     records.append(record)
+        #     db.session.bulk_save_objects(records)
+        #     db.session.commit()
     return jsonify(message='db initialized!')
 
 @index_views.route('/workout', methods=['GET'])
