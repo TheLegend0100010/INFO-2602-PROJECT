@@ -167,7 +167,12 @@
                   <p>Difficulty: {{routine.level | capitalize}}</p>
                   <p>Likes: {{routine.saves}}</p>
 
-                  <p>     
+                
+                    <p>
+                    {% for workout in routine.workouts %}
+                        {{ workout.name }}{% if not loop.last %} {% endif %}
+                    {% endfor %}
+                   =
 
 
                   </p>
