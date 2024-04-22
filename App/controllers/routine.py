@@ -52,7 +52,7 @@ def add_workout(routineID, workoutID):
 def save_routine(routineID, user_id):
     routine = Routine.query.get(routineID)
     if routine:
-        user = User.get(user_id)
+        user = User.query.get(user_id)
         if user and routine.user_id != user_id:
             user.routines.append(routine)
             routine.saves += 1

@@ -83,8 +83,7 @@ def init():
 
 @index_views.route('/workout', methods=['GET'])
 def workouts_page():
-     flash('Win')
-     return render_template('workout.html', workouts=Workout.query.all())
+    return render_template('workout.html', workouts=Workout.query.all())
     # return jsonify(message="Page Not Implemented Yet")
 
 

@@ -55,7 +55,9 @@ def check_routine_saved(id, routineID):
     user = User.query.get(id)
     if user:
         routine = Routine.query.get(routineID)
-        return routine in user.routines
+        for routinee in user.routines:
+            if routine.id == routinee.id:
+                return True
     return False
             
 # def checkSaved(id, routineID):

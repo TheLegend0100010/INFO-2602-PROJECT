@@ -23,7 +23,12 @@ def add_workout_action(id, workoutid):
 @routine_views.route('/saved', methods=['GET'])
 @jwt_required()
 def view_saved_routine():
-    return render_template('temp sabed.html')
+    print(current_user.routines)
+    records = []
+    for routine in current_user.routines:
+        if routine.user_id != current_user.id:
+            records.append(routine)
+    return render_template('temp sabed.html', routines=records, user=current_user)
 
 @routine_views.route('/routines', methods=['GET'])
 @jwt_required()
@@ -70,11 +75,16 @@ def edit_routine_route(id):
     routine = edit_routine(id, data['name'], data['text'])
     return redirect(url_for('routine_views.user_routines'))
 
-@routine_views.route('/routine/save/<int:id>', methods=['POST'])
+@routine_views.route('/routine/save/<int:id>', methods=['GET'])
+@jwt_required()
 def save_routine_action(id):
-    if check_routine_saved(id, current_user.id):
-        save_routine(id, current_user.id)
-    else: unsave_routine(id, current_user.id)
-    return request.referrer
+    save_routine(id, current_user.id)
+    return redirect(url_for('routine_views.view_saved_routine'))
+
+@routine_views.route('/routine/unsave/<int:id>', methods=['GET'])
+@jwt_required()
+def unsave_routine_action(id):
+    unsave_routine(id, current_user.id)
+    return redirect(url_for('routine_views.view_saved_routine'))
 
 
