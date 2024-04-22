@@ -8,8 +8,8 @@ def get_routine(id):
         return None
     return routine
 
-def make_routine(name, user_id):
-    routine = Routine(name, user_id)
+def make_routine(name, text, user_id):
+    routine = Routine(name, text, user_id)
     db.session.add(routine)
     db.session.commit()
     return routine
@@ -24,14 +24,24 @@ def edit_routine(routineID, name, text):
         return routine
     return None
 
+def delete_routine_action(id, user_id):
+    routine = Routine.query.get(id)
+    if routine:
+        if routine.user_id != user_id:
+            return False
+        db.session.delete(routine)
+        db.session.commit()
+        return True
+    return False
+
 def add_workout(routineID, workoutID):
     routine = Routine.query.get(routineID)
     if routine:
         workout = Workout.query.get(workoutID)
         if workout:
-            if routine.level == 'beginner':
+            if routine.level == 'Beginner':
                 routine.level = workout.level
-            elif routine.level == 'intermediate' and workout.level == 'expert':
+            elif routine.level == 'Intermediate' and workout.level == 'Advanced':
                 routine.level = workout.level
             routine.workouts.append(workout)
             db.session.add(routine)

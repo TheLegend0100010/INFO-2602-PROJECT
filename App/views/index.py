@@ -58,7 +58,7 @@ def init():
     db.drop_all()
     db.create_all()
     create_user('bob', 'bobpass')
-    with open('exercises.json', encoding = "utf-8") as file:
+    with open('workouts.csv', encoding = "utf-8") as file:
         exercises = json.load(file)
         records =[]
         for exercise in exercises['exercises']:
@@ -77,7 +77,7 @@ def init():
 @index_views.route('/workout', methods=['GET'])
 def workouts_page():
      flash('Win')
-     return render_template('templanding.html')
+     return render_template('workout.html', workouts=Workout.query.all())
     # return jsonify(message="Page Not Implemented Yet")
 
 

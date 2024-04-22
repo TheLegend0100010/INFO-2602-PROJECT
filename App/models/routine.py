@@ -8,10 +8,11 @@ class Routine(db.Model):
     saves = db.Column(db.Integer, nullable = False)
     workouts = db.relationship('Workout', secondary = 'routine_workout', backref= 'routines', lazy = True)
 
-    def __init__(self, name, user_id):
+    def __init__(self, name, text, user_id):
         self.name = name
+        self.text = text
         self.user_id = user_id
         self.saves = 0
-        self.level = 'beginner'
+        self.level = 'Beginner'
 
     

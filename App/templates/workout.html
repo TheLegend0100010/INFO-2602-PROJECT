@@ -105,16 +105,16 @@
       <div class="nav-wrapper" style="display: flex; justify-content: space-between; align-items: center; padding-left:5em;">
         
         <a href="/home" class="buttons black-text" >
-        <h6 style="color:#3f5e5a; background-color:white;"name="action">Evo Fitness</h6>
+        <h6 style="color:#20fc8f; background-color:white;"name="action">Evo Fitness</h6>
         </a>
         <a href="/routines" class="buttons black-text" >
-        <h5 style="color:#20fc8f; background-color:white;"name="action">My Posts</h5>
+        <h5 style="color:black; background-color:white;"name="action">My Posts</h5>
         </a>
         <a href="/saved" class="buttons black-text" >
         <h5 style="color:#3f5e5a; background-color:white;"name="action">Saved</h5>
         </a>
-        <a href="/workouts" class="buttons black-text" >
-        <h5 style="color:#3f5e5a; background-color:white;"name="action">Workouts</h5>
+        <a href="/login" class="buttons black-text" >
+        <h5 style="color:#3f5e5a; background-color:white;"name="action">My Workouts</h5>
         </a>
         
         
@@ -147,92 +147,53 @@
     <div class="card-panel#6dd1bb darken-2"">
     <div class="row">
 
-    <section class="col s12" style="margin-top: 5px; height: 95vh, ">    
+    <section class="col s12" style="margin-top: 5px; height: 95vh; ">    
 
-      <h4 style='text-align: center'> <span style='color:#2BAF90'>{{current_user.username}} Posts</span></h4>
+      <h4 style='text-align: center'> <span style='color:#2BAF90'>Create Routine</span></h4>
+      <a href="/createroutine" class="buttons black-text" ><h5 style='text-align: center'> <span style='color:#black'>Use the <span style="color: #20fc8f">Floating button</span> or this link to publish a routine</span></h5>
+      </a>
       
+
+      <h4 style='text-align: center'> <span style='color:#2BAF90'>Browse Routines</span></h4>
 
 
       <div class="row">
-        {%for routine in current_user.routines%}
-        <div class="col s6 m12">
-          <div class="col s12 m7">
-           
-            <div class="card horizontal">
-              
-              <div class="card-stacked">
-                <div class="card-content">
-                  <h4><span class="card-title">{{routine.name}}</span></h4>
-                  <p>Description: {{routine.text}}</p>
-                  <p>Difficulty: {{routine.level | capitalize}}</p>
-                  <p>Likes: {{routine.saves}}</p>
+        {% for workout in workouts %}
+        <div class="col s6 m3">
+          <div class="card blue-grey darken-1 h-100">
+            <div class="card-content white-text">
+              <h4><span class="card-title">{{workout.name}}</span></h4>
+              <h5>Difficulty: {{workout.level}}</h5>
 
-                  <p>     
-
-
-                  </p>
-
-                  <h5 style="font-size:2">Workout Category</h5>
-                </div>
-                <div class="card-action">
-                  <form id="deleteForm" action="/routine/delete/{{routine.id}}" method="POST">
-                    <button type="submit" onclick="return confirm('Are you sure you want to delete this routine?')" class="waves-effect waves-light btn-flat" style="background-color:white; color:#3e5d59">DELETE</button>
-                </form>
-                <!-- <form action="/routine/edit" method = "POST">
-                    <button type = "submit" class="waves-effect waves-light btn-flat">EDIT</button>
-                </form> -->
-                  <!-- <a href="#" class="waves-effect waves-light btn-flat" style="; background-color:white;color:#3e5d59">DELETE </a> -->
-                  <a href="/routine/edit/{{routine.id}}" class="waves-effect waves-light btn-flat" style="; background-color:white;color:#3e5d59">EDIT </a>
-                </div>
-              </div>
+            </div>
+            <div class="card-action">
+              <a href="#">ADD TO ROUTINE</a>
             </div>
           </div>
-          {%endfor%}
+        </div>
+        {%endfor%}
 
-        <div class="row">
-          <div class="col s6 m12">
-            <div class="col s12 m7">
-
-              <div class="card horizontal">
-
-                <div class="card-stacked">
-                  <div class="card-content">
-                    <h4><span class="card-title">Routine Title</span></h4>
-                    <p>Description</p>
-                    <p>difficutly</p>
-                    <p>likes : 3</p>
-
-                    <h5 style="font-size:2">Workout Category</h5>
-                  </div>
-                  <div class="card-action">
-                    <a href="#" class="waves-effect waves-light btn-flat" style="; background-color:white;color:#3e5d59">DELETE </a>
-                    <a href="#" class="waves-effect waves-light btn-flat" style="; background-color:white;color:#3e5d59">EDIT </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-
-
-
-            
-          
-         
         
+
+      </div>
+
+
+
+
+
 
         
       </div>
 
       
         <div class="fixed-action-btn">
-            <a class="btn-floating btn-large #20fc8f">
+            <a class="btn-floating btn-large #20fc8f waves-effect" href="/createroutine">
               <i class="large material-icons">mode_edit</i>
             </a>
-            <ul>
+            <!-- <ul>
 
               <li><a class="btn-floating #20fc8f"><i class="material-icons">attach_file</i></a></li>
-            </ul>
+            </ul> -->
           </div>
 
 
