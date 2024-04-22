@@ -53,33 +53,33 @@ def login_action():
     flash("Invalid username/password")
     return render_template('templogin.html')
 
-@index_views.route('/init', methods=['GET'])
-def init():
-    db.drop_all()
-    db.create_all()
-    create_user('bob', 'bobpass')
-    with open('workouts.csv', newline='', encoding='utf-8') as file:
-        records =[]
-        reader = csv.DictReader(file, delimiter=';')
-        print(reader)
-        for row in reader:
-            print(row.get('name', ''))
-            record = Workout(row.get('name', ''), row.get('level', '')) 
-            records.append(record)   
-        db.session.bulk_save_objects(records)  
-        db.session.commit()  
-        # for exercise in exercises['exercises']:
-        #     image = exercise['name'].replace(' ', '_')
-        #     image = image.replace('/', '_')
-        #     imagelink = f"https://raw.githubusercontent.com/wrkout/exercises.json/master/exercises/{image}/images/0.jpg"
-        #     instructions = ""
-        #     for instruct in exercise['instructions']:
-        #             instructions += instruct
-        #     record = Workout(exercise['name'], exercise['level'], exercise['primaryMuscles'][0], imagelink)
-        #     records.append(record)
-        #     db.session.bulk_save_objects(records)
-        #     db.session.commit()
-    return jsonify(message='db initialized!')
+# @index_views.route('/init', methods=['GET'])
+# def init():
+#     db.drop_all()
+#     db.create_all()
+#     create_user('bob', 'bobpass')
+#     with open('workouts.csv', newline='', encoding='utf-8') as file:
+#         records =[]
+#         reader = csv.DictReader(file, delimiter=';')
+#         print(reader)
+#         for row in reader:
+#             print(row.get('name', ''))
+#             record = Workout(row.get('name', ''), row.get('level', '')) 
+#             records.append(record)   
+#         db.session.bulk_save_objects(records)  
+#         db.session.commit()  
+#         # for exercise in exercises['exercises']:
+#         #     image = exercise['name'].replace(' ', '_')
+#         #     image = image.replace('/', '_')
+#         #     imagelink = f"https://raw.githubusercontent.com/wrkout/exercises.json/master/exercises/{image}/images/0.jpg"
+#         #     instructions = ""
+#         #     for instruct in exercise['instructions']:
+#         #             instructions += instruct
+#         #     record = Workout(exercise['name'], exercise['level'], exercise['primaryMuscles'][0], imagelink)
+#         #     records.append(record)
+#         #     db.session.bulk_save_objects(records)
+#         #     db.session.commit()
+#     return jsonify(message='db initialized!')
 
 @index_views.route('/workout', methods=['GET'])
 def workouts_page():
